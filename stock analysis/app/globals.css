@@ -1,0 +1,489 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #111827;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
+  --accent-foreground: #111827;
+  --destructive: #ef4444;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: #2563eb;
+  --chart-1: #2563eb;
+  --chart-2: #059669;
+  --chart-3: #dc2626;
+  --chart-4: #d97706;
+  --chart-5: #7c3aed;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #2563eb;
+}
+
+/* Dark theme removed - using light theme only */
+
+/* === CUSTOM COLOR THEME === */
+@theme {
+  /* Extended Gray Scale */
+  --color-gray-900: #050505;
+  --color-gray-800: #141414;
+  --color-gray-700: #212328;
+  --color-gray-600: #30333A;
+  --color-gray-500: #9095A1;
+  --color-gray-400: #CCDADC;
+
+  /* Vibrant Colors */
+  --color-blue-600: #5862FF;
+  --color-yellow-400: #FDD458;
+  --color-yellow-500: #E8BA40;
+  --color-teal-400: #0FEDBE;
+  --color-red-500: #FF495B;
+  --color-orange-500: #FF8243;
+  --color-purple-500: #D13BFF;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-white text-gray-900 font-sans;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8;
+  }
+  .blue-btn {
+    @apply h-12 cursor-pointer bg-gradient-to-b from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium text-base rounded-lg shadow-lg disabled:opacity-50 transition-all duration-200;
+  }
+  .btn-primary {
+    @apply h-12 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium text-base rounded-lg transition-all duration-200;
+  }
+  .btn-secondary {
+    @apply h-12 px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-base rounded-lg transition-all duration-200;
+  }
+  .btn-large {
+    @apply h-14 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg rounded-lg transition-all duration-200;
+  }
+  .btn-large-outline {
+    @apply h-14 px-8 py-4 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-lg rounded-lg transition-all duration-200;
+  }
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #2563eb, #3b82f6, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent !important;
+    font-weight: 600;
+  }
+  
+  /* Specific override for TradingView widget titles */
+  .tradingview-widget-container h3.gradient-text-blue {
+    background: linear-gradient(135deg, #2563eb, #3b82f6, #1d4ed8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+  }
+  .yellow-btn {
+    @apply h-12 cursor-pointer bg-gradient-to-b from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-gray-950 font-medium text-base rounded-lg shadow-lg disabled:opacity-50;
+  }
+  .home-wrapper {
+    @apply text-gray-400 flex-col gap-4 md:gap-10 items-center sm:items-start;
+  }
+  .home-section {
+    @apply w-full gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
+  }
+  .header {
+    @apply z-50 w-full h-[70px] bg-white border-b border-gray-200 shadow-sm;
+  }
+  .header-wrapper {
+    @apply flex justify-between items-center px-6 py-4 text-gray-700;
+  }
+  .auth-layout {
+    @apply flex flex-col justify-between lg:flex-row h-screen bg-white relative overflow-hidden;
+  }
+  .auth-logo {
+    @apply pt-6 lg:pt-8 mb-8 lg:mb-12;
+  }
+  .auth-left-section {
+    @apply w-full lg:w-[45%] lg:h-screen px-6 lg:px-16 flex flex-col overflow-y-auto;
+  }
+  .auth-right-section {
+    @apply w-full max-lg:border-t max-lg:border-gray-300 lg:w-[55%] lg:h-screen bg-gray-50 px-6 py-4 md:p-6 lg:py-12 lg:px-18 flex flex-col justify-start;
+  }
+  .auth-blockquote {
+    @apply text-sm md:text-xl lg:text-2xl font-medium text-gray-700 mb-1 md:mb-6 lg:mb-8;
+  }
+  .auth-testimonial-author {
+    @apply text-xs md:text-lg font-bold text-gray-700 not-italic;
+  }
+  .auth-dashboard-preview {
+    @apply border-6 border-gray-200 left-0 hidden w-[1024px] h-auto max-w-none lg:block rounded-xl shadow-2xl;
+  }
+  .form-title {
+    @apply text-4xl font-bold text-gray-900 mb-10;
+  }
+  .form-label {
+    @apply text-sm font-medium text-gray-900;
+  }
+  .form-input {
+    @apply h-12 px-3 py-3 text-gray-900 text-base placeholder:text-gray-500 border-gray-300 bg-white rounded-lg focus:!border-blue-600 focus:ring-0;
+  }
+  .select-trigger {
+    @apply w-full !h-12 px-3 py-3 text-base border-gray-300 bg-white text-gray-900 rounded-lg focus:!border-blue-600 focus:ring-0;
+  }
+  .country-select-trigger {
+    @apply h-12 px-3 py-3 text-base w-full justify-between font-normal border-gray-300 bg-white text-gray-900 rounded-lg focus:!border-blue-600 focus:ring-0;
+  }
+  .country-select-input {
+    @apply !bg-white text-gray-900 border-0 border-b border-gray-300 rounded-none focus:ring-0 placeholder:text-gray-500;
+  }
+  .country-select-empty {
+    @apply text-gray-500 py-6 text-center !bg-white;
+  }
+  .country-select-item {
+    @apply text-gray-900 cursor-pointer px-3 py-2 rounded-sm bg-white hover:!bg-blue-50;
+  }
+  .footer-link {
+    @apply text-blue-600 font-medium hover:text-blue-700 hover:underline transition-colors;
+  }
+  .search-text {
+    @apply cursor-pointer hover:text-blue-600;
+  }
+  .search-btn {
+    @apply cursor-pointer px-4 py-2 w-fit flex items-center gap-2 text-sm md:text-base bg-blue-600 hover:bg-blue-700 text-white font-medium rounded;
+  }
+  .search-dialog {
+    @apply !bg-white lg:min-w-[800px] border-gray-300 fixed top-10 left-1/2 -translate-x-1/2 translate-y-10;
+  }
+  .search-field {
+    @apply !bg-white border-b border-gray-300 relative;
+  }
+  .search-list {
+    @apply !bg-white max-h-[400px];
+  }
+  .search-list-indicator {
+    @apply px-5 py-2
+  }
+  .search-list-empty {
+    @apply py-6 !bg-transparent text-center text-gray-500;
+  }
+  .search-input {
+    @apply !bg-white border-0 text-gray-900 placeholder:text-gray-500 focus:ring-0 text-base h-14 pr-10;
+  }
+  .search-loader {
+    @apply absolute right-12 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 animate-spin;
+  }
+  .search-count {
+    @apply py-2 px-4 text-sm font-medium text-gray-700 bg-gray-100 border-b border-gray-300;
+  }
+  .search-item {
+    @apply rounded-none my-3 px-1 w-full data-[selected=true]:bg-blue-50;
+  }
+  .search-item-link {
+    @apply px-2 w-full cursor-pointer border-b border-gray-300 last:border-b-0 transition-colors flex items-center gap-3;
+  }
+  .search-item-name {
+    @apply font-medium text-base text-gray-900;
+  }
+  .nav-list {
+    @apply flex flex-col sm:flex-row p-2 gap-3 sm:gap-10 font-medium text-gray-700;
+  }
+  .stock-details-container {
+    @apply w-full grid-cols-1 gap-6 xl:grid-cols-3 space-y-6 sm:space-y-8;
+  }
+  .watchlist-btn {
+    @apply bg-blue-600 text-base hover:bg-blue-700 text-white w-full rounded h-11 font-semibold cursor-pointer;
+  }
+  .watchlist-remove {
+    @apply bg-red-500! hover:bg-red-600! text-white!
+  }
+  .watchlist-empty-container {
+    @apply container gap-8 flex-col items-center md:mt-10 p-6 text-center;
+  }
+  .watchlist-empty {
+    @apply flex flex-col items-center justify-center text-center;
+  }
+  .watchlist-star {
+    @apply h-16 w-16 text-gray-400 mb-4;
+  }
+  .empty-title {
+    @apply text-xl font-semibold text-gray-900 mb-2;
+  }
+  .empty-description {
+    @apply text-gray-700 mb-6 max-w-md;
+  }
+  .watchlist-container {
+    @apply flex flex-col-reverse lg:grid lg:grid-cols-3 gap-8;
+  }
+  .watchlist {
+    @apply lg:col-span-2 space-y-8;
+  }
+  .watchlist-alerts {
+    @apply items-start gap-6 h-full flex-col w-full lg:col-span-1;
+  }
+  .watchlist-icon-btn {
+    @apply w-fit cursor-pointer hover:bg-transparent! text-gray-700 hover:text-blue-600;
+  }
+  .watchlist-icon-added {
+    @apply !text-blue-600 hover:!text-blue-700;
+  }
+  .watchlist-icon {
+    @apply w-8 h-8 rounded-full flex items-center justify-center bg-gray-100;
+  }
+  .trash-icon {
+    @apply h-4 w-4 text-gray-700 hover:text-red-500;
+  }
+  .star-icon {
+    @apply h-4 w-4;
+  }
+  .watchlist-title {
+    @apply text-xl md:text-2xl font-bold text-gray-900;
+  }
+  .watchlist-table {
+    @apply !relative overflow-hidden !w-full bg-white border !border-gray-300 !rounded-lg;
+  }
+  .table-header-row {
+    @apply text-gray-700 font-medium bg-gray-100 border-b border-gray-300 hover:bg-gray-100;
+  }
+  .table-header:first-child {
+    @apply pl-4;
+  }
+  .table-row {
+    @apply border-b cursor-pointer text-gray-900 border-gray-300 hover:bg-gray-50 transition-colors;
+  }
+  .table-cell {
+    @apply font-medium text-base
+  }
+  .add-alert {
+    @apply flex text-sm items-center whitespace-nowrap gap-1.5 px-3 w-fit py-2 text-blue-600 border border-blue-600/20 rounded font-medium bg-transparent hover:bg-blue-600/10 cursor-pointer transition-colors;
+  }
+  .watchlist-news {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+  .news-item {
+    @apply bg-white rounded-lg border w-full border-gray-300  p-4 duration-200 hover:border-blue-300 cursor-pointer;
+  }
+  .news-tag {
+    @apply inline-block w-fit px-2 py-1 mb-5 rounded bg-blue-100 text-blue-600 text-sm font-mono font-medium;
+  }
+  .news-title {
+    @apply text-lg  font-semibold text-gray-900 leading-tight mb-3 line-clamp-2;
+  }
+  .news-meta {
+    @apply flex items-center text-sm text-gray-600 mb-1;
+  }
+  .news-summary {
+    @apply text-gray-700 flex-1 text-base leading-relaxed mb-3 line-clamp-3;
+  }
+  .news-cta {
+    @apply text-sm align-bottom text-blue-600 hover:text-gray-700;
+  }
+  .alert-dialog {
+    @apply bg-white border-gray-300 text-gray-900 max-w-md;
+  }
+  .alert-title {
+    @apply text-xl font-semibold text-gray-900;
+  }
+  .alert-list {
+    @apply overflow-y-auto w-full max-h-[911px] rounded-lg flex border border-gray-300 flex-col gap-4 bg-white p-3 flex-1;
+  }
+  .alert-empty {
+    @apply px-6 py-8 text-center text-gray-500/50;
+  }
+  .alert-item {
+    @apply p-4 rounded-lg bg-gray-50 border border-gray-300;
+  }
+  .alert-name {
+    @apply mb-2 text-lg text-blue-600 font-semibold;
+  }
+  .alert-details {
+    @apply flex border-b pb-3 items-center justify-between gap-3 mb-2;
+  }
+  .alert-company {
+    @apply text-gray-700 text-base;
+  }
+  .alert-price {
+    @apply text-gray-900 font-bold;
+  }
+  .alert-actions {
+    @apply flex items-end justify-between;
+  }
+  .alert-update-btn {
+    @apply text-gray-700 rounded-full bg-transparent hover:bg-blue-600/15 cursor-pointer;
+  }
+  .alert-delete-btn {
+    @apply text-gray-700 rounded-full hover:bg-red-600/15 bg-transparent cursor-pointer transition-colors;
+  }
+}
+
+/* Market News Component Styles */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* TradingView Advanced Chart Widget Styles */
+    .tradingview-widget-container {
+      position: relative;
+      background-color: #ffffff !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      border: 3px solid #e5e7eb !important;
+    }
+
+.tv-embed-widget-wrapper__body {
+  background-color: #ffffff !important;
+}
+
+.tradingview-widget-container__widget {
+  background-color: #ffffff !important;
+  height: 100% !important;
+}
+
+.widget-stock-heatmap-container .screenerMapWrapper-BBVfGP0b {
+  overflow: hidden !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.canvasContainer-tyaAU8aH {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.tv-site-widget--bg_none {
+  background-color: transparent !important;
+}
+
+.tradingview-widget-copyright {
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  padding: 4px 0;
+  background-color: transparent;
+}
+
+.tradingview-widget-copyright a {
+  color: #60a5fa;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.tradingview-widget-copyright a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.tv-embed-widget-wrapper .tv-embed-widget-wrapper__body {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.tradingview-widget-container iframe {
+  background-color: #ffffff !important;
+  width: 100% !important;
+}
+
+    .custom-chart.tradingview-widget-container iframe {
+      border: 3px solid #e5e7eb;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+
+/* Custom scrollbar that shows on hover */
+.scrollbar-hide-default {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-hide-default::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-hide-default::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hide-default::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.scrollbar-hide-default:hover {
+  scrollbar-color: #30333A transparent;
+}
+
+.scrollbar-hide-default:hover::-webkit-scrollbar-thumb {
+  background-color: #30333A;
+}
+
+.scrollbar-hide-default::-webkit-scrollbar-thumb:hover {
+  background-color: #9095A1;
+}
