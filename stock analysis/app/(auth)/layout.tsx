@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import {auth} from "@/lib/better-auth/auth";
+import {auth, getAuth} from "@/lib/better-auth/auth";
 import {headers} from "next/headers";
 import {redirect} from "next/navigation";
 
 const Layout = async ({ children }: { children : React.ReactNode }) => {
+    // Ensure auth is initialized with database connection at runtime
+    await getAuth();
     const session = await auth.api.getSession({ headers: await headers() })
 
     if(session?.user) redirect('/dashboard')
