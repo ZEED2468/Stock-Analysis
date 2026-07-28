@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSessionCookie } from "better-auth/cookies";
 
 export async function middleware(request: NextRequest) {
-    const sessionCookie = getSessionCookie(request);
+    const sessionCookie = request.cookies.get("better-auth.session_token")?.value || 
+                          request.cookies.get("__Secure-better-auth.session_token")?.value;
     const { pathname } = request.nextUrl;
 
     // Allow access to public routes without authentication
