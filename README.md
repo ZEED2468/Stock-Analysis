@@ -1,30 +1,37 @@
-Real-Time Stock Market App
+# Stock Analysis
 
 A modern, AI-powered stock market application that delivers real-time market data, personalized insights, and interactive analytics to help investors make informed decisions.
 
-Features
+## Features
 
-- Real-Time Stock Prices – Live market data with instant updates.
-- Smart Stock Search – Quickly search stocks by company name or ticker symbol.
-- Personalized Price Alerts – Receive notifications when stocks reach your target price.
-- Interactive Charts – Analyze historical performance with dynamic and customizable charts.
-- AI-Powered Insights – Get intelligent market analysis, trend detection, and investment insights.
-- Daily Market News Summary – Stay informed with curated financial news and AI-generated summaries.
-- Watchlists – Track your favorite stocks in one place with real-time updates.
+- **Real-Time Stock Prices** – Live market data with instant updates via Finnhub.
+- **Smart Stock Search** – Quickly search stocks by company name or ticker symbol.
+- **Personalized Price Alerts** – Receive notifications when stocks reach your target price.
+- **Interactive Charts** – Analyze historical performance with dynamic and customizable charts.
+- **AI-Powered Insights** – Get intelligent market analysis, trend detection, and investment insights powered by Google Gemini.
+- **Daily Market News Summary** – Stay informed with curated financial news and AI-generated summaries, delivered via automated email digests.
+- **Watchlists** – Track your favorite stocks in one place with real-time updates.
 
-Tech Stack
+## Tech Stack
 
-- Frontend: Next.js
-- Backend: Node.js / NestJS
-- Database: PostgreSQL
-- Cache: Redis
-- Real-Time: WebSockets
-- Charts: Chart.js
-- AI: OpenAI API
-- Authentication: JOAuth
-- Deployment: Vercel
+- **Frontend:** Next.js
+- **Backend:** Node.js / NestJS
+- **Database:** MongoDB
+- **Real-Time Market Data:** Finnhub API
+- **AI:** Google Gemini API
+- **Background Jobs / Scheduling:** Inngest
+- **Email Delivery:** Nodemailer
+- **Charts:** Chart.js
+- **Authentication:** Better Auth
+- **Deployment:** Vercel
 
-Use Cases
+## Technical Highlights
+
+- **Real-time price updates:** Live stock prices are pulled from the Finnhub API. Getting updates to reflect in real time across the app was one of the trickiest parts of the build — [add 1-2 sentences here on what exactly went wrong and how you resolved it, e.g. polling interval, websocket handling, or state sync issues].
+- **Background automation with Inngest:** Daily market news summaries and email digests are handled as scheduled background jobs via Inngest, decoupling long-running tasks (like AI summarization and email delivery) from the main request/response cycle.
+- **AI-generated insights:** Market analysis and news summaries are generated using Google Gemini, with prompts designed to turn raw price/news data into concise, readable insights for users.
+
+## Use Cases
 
 - Monitor live stock prices
 - Track personal investment portfolios
@@ -33,7 +40,7 @@ Use Cases
 - Stay updated with daily financial news
 - Build and manage custom watchlists
 
-Future Enhancements
+## Future Enhancements
 
 - Portfolio performance tracking
 - Stock comparison tools
@@ -43,6 +50,6 @@ Future Enhancements
 - Social sentiment analysis
 - AI investment assistant
 
-License
+## License
 
 This project is licensed under the MIT License.
