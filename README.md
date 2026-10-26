@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 # Stock Analysis
+=======
+# IntelliStock
+>>>>>>> 9ecb332 (Revamp IntelliStock branding and dark terminal UI end to end.)
 
-A modern, AI-powered stock market application that delivers real-time market data, personalized insights, and interactive analytics to help investors make informed decisions.
+AI-powered stock market analysis — real-time prices, alerts, charts, and insights.
 
+<<<<<<< HEAD
 ## Features
 
 - **Real-Time Stock Prices** â€“ Live market data with instant updates via Finnhub.
@@ -53,3 +58,8 @@ A modern, AI-powered stock market application that delivers real-time market dat
 ## License
 
 This project is licensed under the MIT License.
+=======
+Live: https://stock-analysis-alpha-amber.vercel.app/
+
+Formerly branded as Signalist / Stock Analysis. Product name aligned to portfolio as **IntelliStock**.
+>>>>>>> 9ecb332 (Revamp IntelliStock branding and dark terminal UI end to end.)

@@ -1,18 +1,24 @@
 'use server';
 
-import {auth} from "@/lib/better-auth/auth";
+import {auth, getAuth} from "@/lib/better-auth/auth";
 import {inngest} from "@/lib/inngest/client";
 import {headers} from "next/headers";
 
 export const signUpWithEmail = async ({ email, password, fullName, country, investmentGoals, riskTolerance, preferredIndustry }: SignUpFormData) => {
     try {
+        await getAuth();
         const response = await auth.api.signUpEmail({ body: { email, password, name: fullName } })
 
         if(response) {
-            await inngest.send({
-                name: 'app/user.created',
-                data: { email, name: fullName, country, investmentGoals, riskTolerance, preferredIndustry }
-            })
+            try {
+                await inngest.send({
+                    name: 'app/user.created',
+                    data: { email, name: fullName, country, investmentGoals, riskTolerance, preferredIndustry }
+                })
+            } catch (inngestError) {
+                // Welcome email pipeline is optional in local/dev without Inngest keys
+                console.warn('Welcome email event skipped:', inngestError instanceof Error ? inngestError.message : inngestError)
+            }
         }
 
         return { success: true, data: response }
@@ -24,6 +30,7 @@ export const signUpWithEmail = async ({ email, password, fullName, country, inve
 
 export const signInWithEmail = async ({ email, password }: SignInFormData) => {
     try {
+        await getAuth();
         const response = await auth.api.signInEmail({ body: { email, password } })
 
         return { success: true, data: response }

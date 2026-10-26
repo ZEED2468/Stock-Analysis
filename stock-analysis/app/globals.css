@@ -105,7 +105,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-white text-gray-900 font-sans;
+    @apply bg-[#030712] text-white font-sans;
   }
 }
 
@@ -113,11 +113,8 @@
   .container {
     @apply mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8;
   }
-  .blue-btn {
-    @apply h-12 cursor-pointer bg-gradient-to-b from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium text-base rounded-lg shadow-lg disabled:opacity-50 transition-all duration-200;
-  }
   .btn-primary {
-    @apply h-12 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium text-base rounded-lg transition-all duration-200;
+    @apply h-12 px-6 py-3 bg-[#0FEDBE] hover:bg-[#5EEAD4] text-[#03120f] font-semibold text-base rounded-full transition-all duration-200;
   }
   .btn-secondary {
     @apply h-12 px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-base rounded-lg transition-all duration-200;
@@ -182,19 +179,19 @@
     @apply border-6 border-gray-200 left-0 hidden w-[1024px] h-auto max-w-none lg:block rounded-xl shadow-2xl;
   }
   .form-title {
-    @apply text-4xl font-bold text-gray-900 mb-10;
+    @apply text-3xl font-bold text-white mb-8;
   }
   .form-label {
-    @apply text-sm font-medium text-gray-900;
+    @apply text-sm font-medium text-white/80;
   }
   .form-input {
-    @apply h-12 px-3 py-3 text-gray-900 text-base placeholder:text-gray-500 border-gray-300 bg-white rounded-lg focus:!border-blue-600 focus:ring-0;
+    @apply h-12 px-3 py-3 text-white text-base placeholder:text-white/35 border-white/15 bg-white/5 rounded-lg focus:!border-[#0FEDBE] focus:ring-0;
   }
   .select-trigger {
-    @apply w-full !h-12 px-3 py-3 text-base border-gray-300 bg-white text-gray-900 rounded-lg focus:!border-blue-600 focus:ring-0;
+    @apply w-full !h-12 px-3 py-3 text-base border-white/15 bg-white/5 text-white rounded-lg focus:!border-[#0FEDBE] focus:ring-0;
   }
   .country-select-trigger {
-    @apply h-12 px-3 py-3 text-base w-full justify-between font-normal border-gray-300 bg-white text-gray-900 rounded-lg focus:!border-blue-600 focus:ring-0;
+    @apply h-12 px-3 py-3 text-base w-full justify-between font-normal border-white/15 bg-white/5 text-white rounded-lg focus:!border-[#0FEDBE] focus:ring-0;
   }
   .country-select-input {
     @apply !bg-white text-gray-900 border-0 border-b border-gray-300 rounded-none focus:ring-0 placeholder:text-gray-500;
@@ -206,7 +203,10 @@
     @apply text-gray-900 cursor-pointer px-3 py-2 rounded-sm bg-white hover:!bg-blue-50;
   }
   .footer-link {
-    @apply text-blue-600 font-medium hover:text-blue-700 hover:underline transition-colors;
+    @apply text-[#0FEDBE] font-medium hover:text-[#5EEAD4] hover:underline transition-colors;
+  }
+  .blue-btn {
+    @apply h-12 cursor-pointer bg-[#0FEDBE] hover:bg-[#5EEAD4] text-[#03120f] font-semibold text-base rounded-full shadow-[0_0_28px_rgba(15,237,190,0.25)] disabled:opacity-50 transition-all duration-200;
   }
   .search-text {
     @apply cursor-pointer hover:text-blue-600;

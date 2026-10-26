@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import TradingViewWidget from "@/components/TradingViewWidget";
 import {
     HEATMAP_WIDGET_CONFIG,
@@ -12,7 +12,7 @@ import Header from "@/components/Header";
 
 interface DashboardProps {
     user: User;
-    initialStocks: any[];
+    initialStocks: StockWithWatchlistStatus[];
 }
 
 const Dashboard = ({ user, initialStocks }: DashboardProps) => {
@@ -24,14 +24,18 @@ const Dashboard = ({ user, initialStocks }: DashboardProps) => {
         setSelectedView(view);
     };
 
+    const panel =
+        "rounded-2xl border border-white/10 bg-[#080D18]/80 shadow-[0_0_0_1px_rgba(15,237,190,0.04)] backdrop-blur-sm";
+
     const renderContent = () => {
         switch (selectedView) {
             case 'market':
                 return (
-                    <div className="flex min-h-screen gap-6">
-                        {/* Left Column - Market Overview (30%) */}
-                        <aside className="w-[30%] bg-white border-r border-gray-200 p-4">
-                            <h2 className="text-xl font-semibold text-blue-600 mb-4">Market Overview</h2>
+                    <div className="flex min-h-[70vh] flex-col gap-4 xl:flex-row xl:gap-5">
+                        <aside className={`w-full p-4 xl:w-[30%] ${panel}`}>
+                            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#0FEDBE]">
+                                Market Overview
+                            </h2>
                             <TradingViewWidget
                                 title=""
                                 scriptUrl={`${scriptUrl}market-overview.js`}
@@ -41,55 +45,53 @@ const Dashboard = ({ user, initialStocks }: DashboardProps) => {
                             />
                         </aside>
 
-                        {/* Center Column - Market Data/Stock Heatmap (50%) */}
-                        <main className="w-[50%] px-4 pb-4">
-                            <div className="bg-white rounded-lg border border-gray-200 p-4">
-                                <div className="flex space-x-1 mb-5">
-                                    <button 
-                                        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                                            activeTab === 'market-data' 
-                                                ? 'text-blue-600 bg-blue-50 border-b-2 border-blue-600' 
-                                                : 'text-gray-500 hover:text-blue-600 hover:bg-gray-50'
-                                        }`}
-                                        onClick={() => setActiveTab('market-data')}
-                                    >
-                                        Market Data
-                                    </button>
-                                    <button 
-                                        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                                            activeTab === 'heatmap' 
-                                                ? 'text-blue-600 bg-blue-50 border-b-2 border-blue-600' 
-                                                : 'text-gray-500 hover:text-blue-600 hover:bg-gray-50'
-                                        }`}
-                                        onClick={() => setActiveTab('heatmap')}
-                                    >
-                                        Stock Heatmap
-                                    </button>
-                                </div>
-                                
-                                <div className="min-h-[600px]">
-                                    {activeTab === 'market-data' ? (
-                                        <TradingViewWidget
-                                            title=""
-                                            scriptUrl={`${scriptUrl}market-quotes.js`}
-                                            config={MARKET_DATA_WIDGET_CONFIG}
-                                            height={600}
-                                        />
-                                    ) : (
-                                        <TradingViewWidget
-                                            title=""
-                                            scriptUrl={`${scriptUrl}stock-heatmap.js`}
-                                            config={HEATMAP_WIDGET_CONFIG}
-                                            height={600}
-                                        />
-                                    )}
-                                </div>
+                        <main className={`w-full px-4 pb-4 xl:w-[50%] ${panel}`}>
+                            <div className="mb-5 flex space-x-1 border-b border-white/10">
+                                <button
+                                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                                        activeTab === 'market-data'
+                                            ? 'border-b-2 border-[#0FEDBE] text-[#0FEDBE]'
+                                            : 'text-white/45 hover:text-white'
+                                    }`}
+                                    onClick={() => setActiveTab('market-data')}
+                                >
+                                    Market Data
+                                </button>
+                                <button
+                                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                                        activeTab === 'heatmap'
+                                            ? 'border-b-2 border-[#0FEDBE] text-[#0FEDBE]'
+                                            : 'text-white/45 hover:text-white'
+                                    }`}
+                                    onClick={() => setActiveTab('heatmap')}
+                                >
+                                    Stock Heatmap
+                                </button>
+                            </div>
+
+                            <div className="min-h-[600px]">
+                                {activeTab === 'market-data' ? (
+                                    <TradingViewWidget
+                                        title=""
+                                        scriptUrl={`${scriptUrl}market-quotes.js`}
+                                        config={MARKET_DATA_WIDGET_CONFIG}
+                                        height={600}
+                                    />
+                                ) : (
+                                    <TradingViewWidget
+                                        title=""
+                                        scriptUrl={`${scriptUrl}stock-heatmap.js`}
+                                        config={HEATMAP_WIDGET_CONFIG}
+                                        height={600}
+                                    />
+                                )}
                             </div>
                         </main>
 
-                        {/* Right Column - Top Stories (20%) */}
-                        <aside className="w-[20%] bg-white border-l border-gray-200 p-4">
-                            <h2 className="text-xl font-semibold text-blue-600 mb-4">Top Stories</h2>
+                        <aside className={`w-full p-4 xl:w-[20%] ${panel}`}>
+                            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#0FEDBE]">
+                                Top Stories
+                            </h2>
                             <TradingViewWidget
                                 title=""
                                 scriptUrl={`${scriptUrl}timeline.js`}
@@ -100,41 +102,11 @@ const Dashboard = ({ user, initialStocks }: DashboardProps) => {
                     </div>
                 );
             case 'stocks':
-                return (
-                    <div className="w-full p-4">
-                        <TradingViewWidget
-                            title=""
-                            scriptUrl={`${scriptUrl}market-quotes.js`}
-                            config={MARKET_DATA_WIDGET_CONFIG}
-                            height={700}
-                        />
-                    </div>
-                );
             case 'crypto':
-                return (
-                    <div className="w-full p-4">
-                        <TradingViewWidget
-                            title=""
-                            scriptUrl={`${scriptUrl}market-quotes.js`}
-                            config={MARKET_DATA_WIDGET_CONFIG}
-                            height={700}
-                        />
-                    </div>
-                );
             case 'forex':
-                return (
-                    <div className="w-full p-4">
-                        <TradingViewWidget
-                            title=""
-                            scriptUrl={`${scriptUrl}market-quotes.js`}
-                            config={MARKET_DATA_WIDGET_CONFIG}
-                            height={700}
-                        />
-                    </div>
-                );
             case 'commodities':
                 return (
-                    <div className="w-full p-4">
+                    <div className={`w-full p-4 ${panel}`}>
                         <TradingViewWidget
                             title=""
                             scriptUrl={`${scriptUrl}market-quotes.js`}
@@ -145,7 +117,7 @@ const Dashboard = ({ user, initialStocks }: DashboardProps) => {
                 );
             case 'news':
                 return (
-                    <div className="w-full p-4">
+                    <div className={`w-full p-4 ${panel}`}>
                         <TradingViewWidget
                             title=""
                             scriptUrl={`${scriptUrl}timeline.js`}
@@ -156,10 +128,11 @@ const Dashboard = ({ user, initialStocks }: DashboardProps) => {
                 );
             case 'alerts':
                 return (
-                    <div className="w-full p-4">
-                        <div className="bg-white rounded-lg border border-gray-200 p-6">
-                            <p className="text-gray-600">Your personalized price alerts will appear here.</p>
-                        </div>
+                    <div className={`w-full p-6 ${panel}`}>
+                        <h2 className="mb-2 text-lg font-medium text-white">Price alerts</h2>
+                        <p className="text-white/50">
+                            Your personalized price alerts will appear here.
+                        </p>
                     </div>
                 );
             default:
@@ -168,21 +141,26 @@ const Dashboard = ({ user, initialStocks }: DashboardProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-white">
-            <Header 
-                user={user} 
-                initialStocks={initialStocks} 
+        <div className="min-h-screen bg-[#030712] text-white">
+            <Header
+                user={user}
+                initialStocks={initialStocks}
                 selectedView={selectedView}
                 onViewChange={handleViewChange}
             />
-            
-            <main className="px-8 py-4">
-                <div className="mb-8 text-center">
-                    <h1 className="text-4xl font-bold mb-4 mt-4 bg-gradient-to-r from-blue-300 to-blue-900 bg-clip-text text-transparent">
-                        Never Miss a Market Move Again
-                    </h1>
-                    <p className="text-lg text-gray-600 max-w-6xl mx-auto leading-relaxed mb-4">
-                        Get instant alerts on price movements that matter to your portfolio. Track real-time data across stocks, crypto, forex, and commodities for smarter, AI-powered investment decisions.
+
+            <main className="px-4 py-6 sm:px-6 lg:px-8">
+                <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+                    <div>
+                        <h1
+                            className="text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+                            style={{ fontFamily: "var(--font-unbounded), system-ui, sans-serif" }}
+                        >
+                            Welcome back, {user.name.split(" ")[0]}.
+                        </h1>
+                    </div>
+                    <p className="max-w-md text-sm text-white/45">
+                        Live markets, alerts, and AI context in one dark surface.
                     </p>
                 </div>
 

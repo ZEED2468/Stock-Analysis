@@ -1,59 +1,75 @@
-import Link from "next/link";
-import Image from "next/image";
-import {auth, getAuth} from "@/lib/better-auth/auth";
-import {headers} from "next/headers";
-import {redirect} from "next/navigation";
+import { auth, getAuth } from "@/lib/better-auth/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import BrandMark from "@/components/BrandMark";
 
-const Layout = async ({ children }: { children : React.ReactNode }) => {
-    // Ensure auth is initialized with database connection at runtime
-    await getAuth();
-    const session = await auth.api.getSession({ headers: await headers() })
+const Layout = async ({ children }: { children: React.ReactNode }) => {
+  await getAuth();
+  const session = await auth.api.getSession({ headers: await headers() });
 
-    if(session?.user) redirect('/dashboard')
+  if (session?.user) redirect("/dashboard");
 
-    return (
-        <main className="auth-layout">
-            <section className="auth-left-section scrollbar-hide-default">
-                <Link href="/" className="auth-logo">
-                    <Image src="/assets/icons/logo.png" alt="Signalist logo" width={140} height={32} className='h-8 w-auto' />
-                </Link>
+  return (
+    <main className="flex min-h-screen flex-col bg-[#030712] text-white lg:flex-row">
+      <section className="flex w-full flex-col overflow-y-auto px-6 py-8 sm:px-10 lg:w-[45%] lg:px-16 lg:py-10">
+        <div className="mb-10">
+          <BrandMark href="/" />
+        </div>
 
-                {/* Title Section */}
-                <div className="text-center mb-4">
-                    <h1 className="text-2xl font-bold mb-2 mt-2 bg-gradient-to-r from-blue-300 to-blue-900 bg-clip-text text-transparent">
-                        Never Miss a Market Move Again
-                    </h1>
-                    <p className="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed mb-2">
-                        Get instant alerts on price movements that matter to your portfolio. Track real-time data across stocks, crypto, forex, and commodities for smarter, AI-powered investment decisions.
-                    </p>
-                </div>
+        <div className="mb-8 max-w-md">
+          <h1
+            className="text-3xl font-semibold tracking-tight text-white"
+            style={{ fontFamily: "var(--font-unbounded), system-ui, sans-serif" }}
+          >
+            Markets, watched. Moves{" "}
+            <span className="text-[#0FEDBE]">caught.</span>
+          </h1>
+          <p className="mt-3 text-sm leading-relaxed text-white/50">
+            Sign in to your watchlist, alerts, and AI insights.
+          </p>
+        </div>
 
-                <div className="pb-6 lg:pb-8 flex-1">{children}</div>
-            </section>
+        <div className="flex-1 pb-8">{children}</div>
+      </section>
 
-            <section className="auth-right-section">
-                <div className="z-10 relative lg:mt-4 lg:mb-16">
-                    <blockquote className="auth-blockquote">
-                        Signalist turned my watchlist into a winning list. The alerts are spot-on, and I feel more confident making moves in the market
-                    </blockquote>
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <cite className="auth-testimonial-author">- Ethan R.</cite>
-                            <p className="max-md:text-xs text-gray-500">Retail Investor</p>
-                        </div>
-                        <div className="flex items-center gap-0.5">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <Image src="/assets/icons/star.svg" alt="Star" key={star} width={20} height={20} className="w-5 h-5" />
-                            ))}
-                        </div>
-                    </div>
-                </div>
+      <section className="relative hidden w-full overflow-hidden border-l border-white/10 bg-[#070B14] lg:flex lg:w-[55%] lg:flex-col lg:justify-between lg:p-12">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(79,140,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(79,140,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px] opacity-60"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-20 top-20 h-72 w-72 rounded-full bg-[#0FEDBE]/15 blur-[90px]"
+        />
 
-                <div className="flex-1 relative">
-                    <Image src="/assets/images/dashboard.png" alt="Dashboard Preview" width={1440} height={1150} className="auth-dashboard-preview absolute top-0" />
-                </div>
-            </section>
-        </main>
-    )
-}
-export default Layout
+        <blockquote className="relative z-10 max-w-lg text-xl font-medium leading-relaxed text-white/85">
+          IntelliStock turned my watchlist into a winning list. The alerts are
+          spot-on, and I feel more confident making moves in the market.
+          <footer className="mt-6 text-sm text-white/45">
+            Ethan R., Retail investor
+          </footer>
+        </blockquote>
+
+        <div className="relative z-10 mt-10 grid gap-3 sm:grid-cols-3">
+          {[
+            { k: "Watch", v: "Live symbols" },
+            { k: "Alert", v: "Price rules" },
+            { k: "Decide", v: "AI digests" },
+          ].map((item) => (
+            <div
+              key={item.k}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0FEDBE]">
+                {item.k}
+              </p>
+              <p className="mt-2 text-sm text-white/70">{item.v}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default Layout;

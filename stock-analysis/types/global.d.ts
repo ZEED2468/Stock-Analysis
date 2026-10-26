@@ -91,6 +91,12 @@ declare global {
         type: string;
     };
 
+    type FinnhubProfile = {
+        name?: string;
+        ticker?: string;
+        exchange?: string;
+    };
+
     type FinnhubSearchResponse = {
         count: number;
         result: FinnhubSearchResult[];

@@ -1,5 +1,8 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+
+dotenv.config({ path: '.env.local' });
+dotenv.config(); // fallback .env
 
 async function main() {
   const uri = process.env.MONGODB_URI;

@@ -38,7 +38,7 @@ export const CONDITION_OPTIONS = [
 
 // TradingView Charts
 export const MARKET_OVERVIEW_WIDGET_CONFIG = {
-    colorTheme: 'light', // light mode
+    colorTheme: 'dark', // light mode
     dateRange: '12M', // last 12 months
     locale: 'en', // language
     largeChartUrl: '', // link to a large chart if needed
@@ -46,8 +46,8 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     showFloatingTooltip: true, // show tooltip on hover
     plotLineColorGrowing: '#2563eb', // line color when price goes up
     plotLineColorFalling: '#dc2626', // line color when price falls
-    gridLineColor: 'rgba(229, 231, 235, 0.5)', // grid line color
-    scaleFontColor: '#374151', // font color for scale
+    gridLineColor: 'rgba(79, 140, 255, 0.12)', // grid line color
+    scaleFontColor: '#94A3B8', // font color for scale
     belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)', // fill under line when growing
     belowLineFillColorFalling: 'rgba(41, 98, 255, 0.12)', // fill under line when falling
     belowLineFillColorGrowingBottom: 'rgba(41, 98, 255, 0)',
@@ -88,7 +88,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
         },
     ],
     support_host: 'https://www.tradingview.com', // TradingView host
-    backgroundColor: '#ffffff', // background color
+    backgroundColor: '#030712', // background color
     width: '100%', // full width
     height: 600, // height in px
     showSymbolLogo: true, // show logo next to symbols
@@ -103,7 +103,7 @@ export const HEATMAP_WIDGET_CONFIG = {
     isTransparent: true,
     locale: 'en',
     symbolUrl: '',
-    colorTheme: 'light',
+    colorTheme: 'dark',
     exchanges: [],
     hasTopBar: false,
     isDataSetEnabled: false,
@@ -117,7 +117,7 @@ export const HEATMAP_WIDGET_CONFIG = {
 export const TOP_STORIES_WIDGET_CONFIG = {
     displayMode: 'regular',
     feedMode: 'market',
-    colorTheme: 'light',
+    colorTheme: 'dark',
     isTransparent: true,
     locale: 'en',
     market: 'stock',
@@ -131,9 +131,9 @@ export const MARKET_DATA_WIDGET_CONFIG = {
     height: 600,
     locale: 'en',
     showSymbolLogo: true,
-    colorTheme: 'light',
+    colorTheme: 'dark',
     isTransparent: false,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#030712',
     symbolsGroups: [
         {
             name: 'Financial',
@@ -172,7 +172,7 @@ export const MARKET_DATA_WIDGET_CONFIG = {
 
 export const SYMBOL_INFO_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
-    colorTheme: 'light',
+    colorTheme: 'dark',
     isTransparent: true,
     locale: 'en',
     width: '100%',
@@ -195,7 +195,7 @@ export const CANDLE_CHART_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     theme: 'light',
     timezone: 'Etc/UTC',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#030712',
     gridColor: '#e5e7eb',
     watchlist: [],
     withdateranges: false,
@@ -221,7 +221,7 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     theme: 'light',
     timezone: 'Etc/UTC',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#030712',
     gridColor: '#e5e7eb',
     watchlist: [],
     withdateranges: false,
@@ -233,7 +233,7 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
 
 export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
-    colorTheme: 'light',
+    colorTheme: 'dark',
     isTransparent: 'true',
     locale: 'en',
     width: '100%',
@@ -244,7 +244,7 @@ export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
 
 export const COMPANY_PROFILE_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
-    colorTheme: 'light',
+    colorTheme: 'dark',
     isTransparent: 'true',
     locale: 'en',
     width: '100%',
@@ -253,7 +253,7 @@ export const COMPANY_PROFILE_WIDGET_CONFIG = (symbol: string) => ({
 
 export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
-    colorTheme: 'light',
+    colorTheme: 'dark',
     isTransparent: 'true',
     locale: 'en',
     width: '100%',
